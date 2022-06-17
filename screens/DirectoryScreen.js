@@ -5,7 +5,7 @@ const DirectoryScreen = (props) => {
     const renderDirectoryItem = ({ item: campsite }) => {
         return (
             <ListItem>
-                <Avatar source={campsite.image} rounded/>
+                <Avatar source={campsite.image} rounded />
                 <ListItem.Content>
                     <ListItem.Title>{campsite.name}</ListItem.Title>
                     <ListItem.Subtitle>
@@ -13,15 +13,15 @@ const DirectoryScreen = (props) => {
                     </ListItem.Subtitle>
                 </ListItem.Content>
             </ListItem>
-        )
-    }
+        );
+    };
     return (
-        <FlatList 
-            data={props.campsite}
+        <FlatList
+            data={props.campsites}
             renderItem={renderDirectoryItem}
             keyExtractor={(item) => item.id.toString()}
         />
-    )
-}
+    );
+};
 
 export default DirectoryScreen;
