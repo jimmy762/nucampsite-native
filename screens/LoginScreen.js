@@ -7,7 +7,7 @@ import * as ImagePicker from "expo-image-picker";
 import { baseUrl } from "../shared/baseUrl";
 import logo from "../assets/images/logo.png";
 import * as ImageManipulator from "expo-image-manipulator";
-import { SaveFormat } from "expo-image-manipulator";
+import * as MediaLibrary from "expo-media-library";
 
 const LoginTab = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -149,6 +149,7 @@ const RegisterTab = () => {
       });
       if (!capturedImage.cancelled) {
         console.log(capturedImage);
+        MediaLibrary.saveToLibraryAsync(capturedImage.uri);
         processImage(capturedImage.uri);
       }
     }
@@ -174,7 +175,7 @@ const RegisterTab = () => {
     const processedImage = await ImageManipulator.manipulateAsync(
       imgUri,
       [{ resize: { width: 400 } }],
-      { format: SaveFormat.PNG }
+      { format: ImageManipulator.SaveFormat.PNG }
     );
     console.log(processedImage);
     setImageUrl(processedImage.uri);
